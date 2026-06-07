@@ -1,0 +1,15 @@
+cp .env.example .env
+php artisan key:generate
+
+php artisan make:request <RequestName>
+php artisan make:middleware <MiddlewareName>
+php artisan make:controller <ControllerName>
+php artisan make:model <ModelName>
+php artisan make:migration <migration_name>
+php artisan make:seeder <SeederName>
+
+php artisan migrate
+php artisan migrate:fresh --seed
+php artisan db:seed
+
+php artisan serve
