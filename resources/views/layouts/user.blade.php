@@ -83,7 +83,8 @@
                                 </button>
 
                             </form>
-                        @else
+                        @endif
+                        @if (!request()->is('login') && !request()->is('register'))
                             <a href="{{ route('login') }}">
                                 Login
                             </a>
