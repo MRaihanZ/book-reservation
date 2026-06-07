@@ -22,6 +22,22 @@ class ReservationController extends Controller
         );
     }
 
+    public function waiting(
+        Reservation $reservation
+    ) {
+        $reservation->update([
+            'status' => 'menunggu',
+            'returned_at' => null,
+            'approved_by' => null,
+            'approved_at' => null
+        ]);
+
+        return back()->with(
+            'success',
+            'Reservasi diubah.'
+        );
+    }
+
     public function approve(
         Reservation $reservation
     ) {
@@ -73,9 +89,7 @@ class ReservationController extends Controller
         // }
 
         $reservation->update([
-            'status' => 'ditolak',
-            'approved_by' => auth()->id(),
-            'approved_at' => now(),
+            'status' => 'ditolak'
         ]);
 
         return back()->with(

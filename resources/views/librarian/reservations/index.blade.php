@@ -41,77 +41,156 @@
                     </td>
 
                     <td>
-                        <div class="flex gap-2">
+                        @if (auth()->user()->role === 'librarian')
+                            @if ($item->status === 'menunggu')
+                                <div class="flex gap-2">
 
-                            <form method="POST" action="{{ route('librarian.reservations.approve', $item) }}">
+                                    <form method="POST" action="{{ route('librarian.reservations.approve', $item) }}">
 
-                                @csrf
-                                @method('PATCH')
+                                        @csrf
+                                        @method('PATCH')
 
-                                <button class="bg-green-600 text-white px-2 py-1 rounded">
+                                        <button class="bg-green-600 text-white px-2 py-1 rounded">
 
-                                    Setujui
+                                            Setujui
 
-                                </button>
+                                        </button>
 
-                            </form>
+                                    </form>
 
-                            <form method="POST" action="{{ route('librarian.reservations.reject', $item) }}">
+                                    <form method="POST" action="{{ route('librarian.reservations.reject', $item) }}">
 
-                                @csrf
-                                @method('PATCH')
+                                        @csrf
+                                        @method('PATCH')
 
-                                <button class="bg-red-600 text-white px-2 py-1 rounded">
+                                        <button class="bg-red-600 text-white px-2 py-1 rounded">
 
-                                    Tolak
+                                            Tolak
 
-                                </button>
+                                        </button>
 
-                            </form>
+                                    </form>
 
-                            <form method="POST" action="{{ route('librarian.reservations.return', $item) }}">
+                                </div>
+                            @endif
 
-                                @csrf
-                                @method('PATCH')
+                            @if ($item->status === 'disetujui')
+                                <div class="flex gap-2">
 
-                                <button class="bg-blue-600 text-white px-2 py-1 rounded">
+                                    <form method="POST" action="{{ route('librarian.reservations.return', $item) }}">
 
-                                    Dikembalikan
+                                        @csrf
+                                        @method('PATCH')
 
-                                </button>
+                                        <button class="bg-blue-600 text-white px-2 py-1 rounded">
 
-                            </form>
+                                            Dikembalikan
 
-                            <form method="POST" action="{{ route('librarian.reservations.lost', $item) }}">
+                                        </button>
 
-                                @csrf
-                                @method('PATCH')
+                                    </form>
 
-                                <button class="bg-yellow-600 text-white px-2 py-1 rounded">
+                                    <form method="POST" action="{{ route('librarian.reservations.lost', $item) }}">
 
-                                    Hilang
+                                        @csrf
+                                        @method('PATCH')
 
-                                </button>
+                                        <button class="bg-yellow-600 text-white px-2 py-1 rounded">
 
-                            </form>
+                                            Hilang
 
-                            |
+                                        </button>
 
-                            <form method="POST" action="{{ route('librarian.reservations.destroy', $item) }}">
+                                    </form>
 
-                                @csrf
-                                @method('DELETE')
+                                </div>
+                            @endif
+                        @endif
+                        @if (auth()->user()->role === 'admin')
+                            <div class="flex gap-2">
 
-                                <button class="bg-red-600 text-white px-2 py-1 rounded">
+                                <form method="POST" action="{{ route('librarian.reservations.waiting', $item) }}">
 
-                                    Hapus
+                                    @csrf
+                                    @method('PATCH')
 
-                                </button>
+                                    <button class="bg-yellow-600 text-white px-2 py-1 rounded">
 
-                            </form>
+                                        Menunggu
 
-                        </div>
+                                    </button>
 
+                                </form>
+
+                                <form method="POST" action="{{ route('librarian.reservations.approve', $item) }}">
+
+                                    @csrf
+                                    @method('PATCH')
+
+                                    <button class="bg-green-600 text-white px-2 py-1 rounded">
+
+                                        Setujui
+
+                                    </button>
+
+                                </form>
+
+                                <form method="POST" action="{{ route('librarian.reservations.reject', $item) }}">
+
+                                    @csrf
+                                    @method('PATCH')
+
+                                    <button class="bg-red-600 text-white px-2 py-1 rounded">
+
+                                        Tolak
+
+                                    </button>
+
+                                </form>
+
+                                <form method="POST" action="{{ route('librarian.reservations.return', $item) }}">
+
+                                    @csrf
+                                    @method('PATCH')
+
+                                    <button class="bg-blue-600 text-white px-2 py-1 rounded">
+
+                                        Dikembalikan
+
+                                    </button>
+
+                                </form>
+
+                                <form method="POST" action="{{ route('librarian.reservations.lost', $item) }}">
+
+                                    @csrf
+                                    @method('PATCH')
+
+                                    <button class="bg-yellow-600 text-white px-2 py-1 rounded">
+
+                                        Hilang
+
+                                    </button>
+
+                                </form>
+
+                                |
+
+                                <form method="POST" action="{{ route('librarian.reservations.destroy', $item) }}">
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button class="bg-red-600 text-white px-2 py-1 rounded">
+
+                                        Hapus
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+                        @endif
                     </td>
 
                 </tr>

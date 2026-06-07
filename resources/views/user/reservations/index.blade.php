@@ -21,6 +21,8 @@
 
                 <th>Jatuh Tempo</th>
 
+                <th>Aksi</th>
+
             </tr>
 
         </thead>
@@ -44,6 +46,23 @@
 
                     <td>
                         {{ $item->due_date }}
+                    </td>
+
+                    <td>
+                        @if ($item->status === 'menunggu')
+                            <form method="POST" action="{{ route('reservations.destroy', $item) }}">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button class="bg-red-600 text-white px-2 py-1 rounded">
+
+                                    Hapus
+
+                                </button>
+
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach

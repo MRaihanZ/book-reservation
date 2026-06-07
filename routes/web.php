@@ -113,6 +113,11 @@ Route::middleware([
         )->name('reservations.index');
 
         Route::patch(
+            '/reservations/{reservation}/waiting',
+            [LibrarianReservationController::class, 'waiting']
+        )->name('reservations.waiting');
+
+        Route::patch(
             '/reservations/{reservation}/approve',
             [LibrarianReservationController::class, 'approve']
         )->name('reservations.approve');
