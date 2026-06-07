@@ -83,15 +83,16 @@
                                 </button>
 
                             </form>
-                        @endif
-                        @if (!request()->is('login') && !request()->is('register'))
-                            <a href="{{ route('login') }}">
-                                Login
-                            </a>
-                            |
-                            <a href="{{ route('register') }}">
-                                Register
-                            </a>
+                        @else
+                            @if (!request()->is('login') && !request()->is('register'))
+                                <a href="{{ route('login') }}">
+                                    Login
+                                </a>
+                                |
+                                <a href="{{ route('register') }}">
+                                    Register
+                                </a>
+                            @endif
                         @endif
                     </div>
                 </div>
